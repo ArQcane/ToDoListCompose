@@ -3,9 +3,7 @@ package com.example.todolistcompose.di
 import android.app.Application
 import androidx.room.Room
 import com.example.todolistcompose.domain.repository.NoteRepository
-import com.example.todolistcompose.domain.use_case.DeleteNoteUseCase
-import com.example.todolistcompose.domain.use_case.GetNotesUseCase
-import com.example.todolistcompose.domain.use_case.NoteUseCases
+import com.example.todolistcompose.domain.use_case.*
 import com.example.todolistcompose.feature_note.data.data_source.NoteDatabase
 import com.example.todolistcompose.feature_note.data.repository.NoteRepositoryImpl
 import dagger.Module
@@ -41,7 +39,9 @@ object AppModule {
     fun provideNoteUseCases(repository: NoteRepository): NoteUseCases{
         return NoteUseCases(
             getNotes = GetNotesUseCase(repository),
-            deleteNote = DeleteNoteUseCase(repository)
+            deleteNote = DeleteNoteUseCase(repository),
+            addNote = AddNoteUseCase(repository),
+            getNote = GetNoteUseCase(repository)
         )
     }
 
